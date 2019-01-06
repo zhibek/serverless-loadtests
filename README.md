@@ -3,9 +3,14 @@
 This repository configures **serverless-artillery** to run loadtests using AWS Lambda infrastructure (a cost effective way of producing a large amount of load for testing).
 
 
-## Installation
+## Prerequisites
 
 Before you start, make sure you have AWS (Amazon Web Services) credentials setup and ready to use. Copy `.env.dist` to `.env` and paste in your AWS credentials after `AWS_ACCESS_KEY_ID=` and `AWS_SECRET_ACCESS_KEY=`.
+
+Also, to improve reporting, you can provide an InfluxDB instance which loadtests stats shall be sent to. This can be used to analyse the loadtests using Grafana. Uncomment the relevant lines in `script.yml` to enable reporting to InfluxDB.
+
+
+## Installation
 
 Now start the Docker containers to setup an environment containing `slsart` (serverless-artillery) binaries:
 ```

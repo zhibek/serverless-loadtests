@@ -10,6 +10,16 @@ config:
     -
       duration: 5
       arrivalRate: 2
+  plugins:
+## ## Uncomment this section to record tests stats to InfluxDB
+##    influxdb:
+##      testName: "example-test" # This name must be changed
+##      influx:
+##        host: "influxdb-host-goes-here"
+##        username: "influxdb-username-goes-here"
+##        password: "influxdb-password-goes-here"
+##        database: "influxdb-database-goes-here"
+
 scenarios:
   -
     flow:
