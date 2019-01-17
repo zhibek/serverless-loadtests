@@ -1,0 +1,22 @@
+# Install InfluxDB
+$ curl -sL https://repos.influxdata.com/influxdb.key | sudo apt-key add -
+$ echo "deb https://repos.influxdata.com/${DISTRIB_ID,,} ${DISTRIB_CODENAME} stable" | sudo tee /etc/apt/sources.list.d/influxdb.list
+$ sudo apt-get update && sudo apt-get install influxdb
+$ sudo service influxdb start
+
+# Setup InfluxDB users & database
+$ influx
+CREATE USER superadmin WITH PASSWORD '<superadminpassword>' WITH ALL PRIVILEGES
+CREATE USER datauser WITH PASSWORD '<datauserpassword>'
+CREATE DATABASE data
+GRANT ALL ON data TO datauser
+
+# Enable auth on InfluxDB
+$ sed -i "s/# auth-enabled = false/auth-enabled = true/" /etc/influxdb/influxdb.conf
+$ sudo service influxdb restart
+
+# Install Grafana
+$ curl https://packages.grafana.com/gpg.key | sudo apt-key add -
+$ echo "deb https://packages.grafana.com/oss/deb stable main" | sudo tee /etc/apt/sources.list.d/grafana.list
+$ sudo apt-get update && sudo apt-get install grafana
+$ sudo service grafana-server start
