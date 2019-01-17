@@ -1,13 +1,12 @@
 version: '3'
 services:
 
-  app:
+  loadtests:
     build:
       context: .
       dockerfile: Dockerfile
-    tty: true
     working_dir: /src
-    command: /src/docker.sh
+    command: init.sh
     volumes:
       - .:/src
     environment:
